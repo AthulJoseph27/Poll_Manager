@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { firestore } from '../firebase';
 
 export default function CreateNewPoll() {
     const [title, setTitle] = useState("");
@@ -32,7 +33,7 @@ export default function CreateNewPoll() {
 
     function getOptionDropDown() {
         var _list = [];
-        for (let i = 1; i <= 26; i++) {
+        for (let i = 2; i <= 26; i++) {
             _list.push(
                 <option value={i}>{i}</option>
             );
@@ -40,7 +41,7 @@ export default function CreateNewPoll() {
         return _list;
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         var start = Date.now();
@@ -54,7 +55,19 @@ export default function CreateNewPoll() {
             addTime = activeTimeValue * 24 * 60 * 60 * 1000;
 
         var end = start + addTime;
-        const poll = { start, end, count, title, optionText };
+        var voteCount = [];
+        var optionTitles = [];
+        for (let i = 0; i < count; i++)
+            voteCount.push(0);
+        for (let i = 0; i < count; i++)
+            optionTitles.push(optionText[i]);
+
+
+        const poll = { start: start, end: end, count: count, title: title, optionText: optionTitles, voteCount: voteCount };
+
+        var newDoc = firestore.collection('polls').doc();
+
+        await newDoc.set(poll);
     }
 
     return (
