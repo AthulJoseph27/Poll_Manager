@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SignUp from "./Components/SignUp";
+import { AuthProvider } from "./Context/AuthContext";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./Components/PrivateRoute";
+import Login from "./Components/Login";
+import ForgotPassword from "./Components/ForgotPassword";
+import Home from './Components/Home';
+import ActivePolls from './Components/ActivePolls';
+import FinishedPolls from './Components/FinishedPolls';
+import Poll from "./Components/Poll";
+import CreateNewPoll from './Components/CreateNewPoll';
+import Vote from './Components/Vote';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute path="/create-new-poll" component={CreateNewPoll} />
+            <PrivateRoute path="/vote/:id" component={Vote} />
+            <Route path="/poll/:id" component={Poll} />
+            <Route exact path="/" component={Home} />
+            <Route path="/active-polls" component={ActivePolls} />
+            <Route path="/finished-polls" component={FinishedPolls} />
+            <Route path="/signUp" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+          </Switch>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default App
