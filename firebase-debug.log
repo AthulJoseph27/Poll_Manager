@@ -1,0 +1,39 @@
+[debug] [2021-07-20T16:28:05.466Z] ----------------------------------------------------------------------
+[debug] [2021-07-20T16:28:05.468Z] Command:       /usr/local/Cellar/node/16.5.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2021-07-20T16:28:05.469Z] CLI Version:   9.16.0
+[debug] [2021-07-20T16:28:05.469Z] Platform:      darwin
+[debug] [2021-07-20T16:28:05.469Z] Node Version:  v16.5.0
+[debug] [2021-07-20T16:28:05.470Z] Time:          Tue Jul 20 2021 21:58:05 GMT+0530 (India Standard Time)
+[debug] [2021-07-20T16:28:05.471Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-20T16:28:05.528Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-20T16:28:05.528Z] > authorizing via signed-in user (pollmanager208@gmail.com)
+[debug] [2021-07-20T16:28:05.528Z] [iam] checking project pollmanager-f5e28 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-07-20T16:28:05.530Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pollmanager-f5e28:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-07-20T16:28:06.819Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 20 Jul 2021 16:28:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1145","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-20T16:28:06.821Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/pollmanager-f5e28/serviceAccounts/pollmanager-f5e28@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-07-20T16:28:08.248Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 20 Jul 2021 16:28:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-20T16:28:08.252Z] > refreshing access token with scopes: []
+[debug] [2021-07-20T16:28:08.252Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-20T16:28:08.426Z] <<< HTTP RESPONSE 200 {"date":"Tue, 20 Jul 2021 16:28:08 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-20T16:28:08.479Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pollmanager-f5e28 [none]
+[debug] [2021-07-20T16:28:08.848Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pollmanager-f5e28 200
+[debug] [2021-07-20T16:28:08.848Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pollmanager-f5e28 {"projectId":"pollmanager-f5e28","projectNumber":"780578761285","displayName":"pollManager","name":"projects/pollmanager-f5e28","resources":{"hostingSite":"pollmanager-f5e28","storageBucket":"pollmanager-f5e28.appspot.com","locationId":"asia-south1"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'pollmanager-f5e28'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2021-07-20T16:28:09.004Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:370:5)
+    at validateString (node:internal/validators:119:11)
+    at Object.join (node:path:1172:7)
+    at Config.path (/usr/local/lib/node_modules/firebase-tools/lib/config.js:115:45)
+    at getChildEnvironment (/usr/local/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:50:49)
+    at runTargetCommands (/usr/local/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:71:14)
+    at /usr/local/lib/node_modules/firebase-tools/lib/deploy/lifecycleHooks.js:122:24
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: An unexpected error has occurred.

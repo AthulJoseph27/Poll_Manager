@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { firestore } from '../firebase';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function CreateNewPoll() {
     const [title, setTitle] = useState("");
+    const [authorName, setAuthorName] = useState("");
     const [count, setCount] = useState(4);
     const [optionText, setOptionText] = useState(new Array(26));
     const [activeTimeUnit, setActiveTimeUnit] = useState('min');
     const [activeTimeValue, setActiveTimeValue] = useState(5);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
     function getOptionsList() {
         var _list = [];
@@ -55,30 +60,43 @@ export default function CreateNewPoll() {
             addTime = activeTimeValue * 24 * 60 * 60 * 1000;
 
         var end = start + addTime;
-        var voteCount = [];
+        var voteCount = {};
         var optionTitles = [];
         for (let i = 0; i < count; i++)
-            voteCount.push(0);
+            voteCount[i.toString()] = 0;
         for (let i = 0; i < count; i++)
             optionTitles.push(optionText[i]);
 
+        try {
+            setLoading(true);
+            var newDoc = firestore.collection('polls').doc();
+            const poll = { id: newDoc.id, start: start, end: end, count: count, title: title, optionText: optionTitles, voteCount: voteCount, author: authorName };
+            await newDoc.set(poll);
+            history.push("/active-polls");
+        } catch {
+            setError("Something went wrong.");
+        }
 
-        const poll = { start: start, end: end, count: count, title: title, optionText: optionTitles, voteCount: voteCount };
-
-        var newDoc = firestore.collection('polls').doc();
-
-        await newDoc.set(poll);
+        setLoading(false);
     }
 
     return (
         <div className="create">
             <h1>Create New Poll</h1>
             <form onSubmit={handleSubmit}>
+                {error && <Alert variant="danger">{error}</Alert>}
                 <label>Poll title:</label>
                 <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    required
+                />
+                <label>Author Name:</label>
+                <input
+                    type="text"
+                    value={authorName}
+                    onChange={(e) => setAuthorName(e.target.value)}
                     required
                 />
                 <label>Option Count</label>
@@ -90,7 +108,7 @@ export default function CreateNewPoll() {
                     className="w-50"
                     type="number"
                     pattern="[0-9]*"
-                    inputmode="numeric"
+                    inputMode="numeric"
                     value={activeTimeValue}
                     onChange={(e) => {
 
@@ -102,7 +120,7 @@ export default function CreateNewPoll() {
                     <option value="day">{activeTimeValue > 1 ? "days" : "day"}</option>
                 </select>
                 {getOptionsList().map((item) => (item))}
-                <Button type="submit">Create Poll</Button>
+                <Button disabled={loading} type="submit">Create Poll</Button>
             </form>
         </div>
     );
