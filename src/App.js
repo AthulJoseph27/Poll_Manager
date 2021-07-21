@@ -10,7 +10,6 @@ import ActivePolls from './Components/ActivePolls';
 import FinishedPolls from './Components/FinishedPolls';
 import Poll from "./Components/Poll";
 import CreateNewPoll from './Components/CreateNewPoll';
-import Vote from './Components/Vote';
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
         <AuthProvider>
           <Switch>
             <PrivateRoute path="/create-new-poll" component={CreateNewPoll} />
-            <PrivateRoute path="/vote/:id" component={Vote} />
             <Route path="/poll/:id" component={Poll} />
             <Route exact path="/" component={Home} />
             <Route path="/active-polls" component={ActivePolls} />

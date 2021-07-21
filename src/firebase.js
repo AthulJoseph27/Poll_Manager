@@ -2,16 +2,15 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-require('dotenv').config();
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+    apiKey: "AIzaSyAsXCYBjs8G8fzYJx7dsM2zQG3yJ0Pf_zE",
+    authDomain: "poll-manager-1ed4e.firebaseapp.com",
+    projectId: "poll-manager-1ed4e",
+    storageBucket: "poll-manager-1ed4e.appspot.com",
+    messagingSenderId: "1054832917243",
+    appId: "1:1054832917243:web:63501be2ec42cec67b8e5e",
+    measurementId: "G-MZLGP06WRX"
 };
 
 firebase.initializeApp(firebaseConfig);

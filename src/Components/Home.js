@@ -1,18 +1,22 @@
-import React, { useRef, useState } from 'react';
-import PollList from './PollList';
+import React from 'react';
 import NavBar from './NavBar';
 import '../styles.css';
+import street from '../assets/street.svg';
 
 export default function Home() {
-    const [polls, setPolls] = useState([
-        { title: "poll-1", link: "", author: "Team Ironman", id: 1 },
-        { title: "poll-2", link: "", author: "Team Cap", id: 2 }
-    ]);
     return (
         <div>
             <NavBar />
             <div>
-                <PollList polls={polls} />
+                <img src={street} style={
+                    {
+                        display: "block",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginTop: "100px",
+                        width: "50%"
+                    }} />
+                <h1 style={{ textAlign: "center", marginTop: "50px", }}>Home</h1>
             </div>
         </div>
     );

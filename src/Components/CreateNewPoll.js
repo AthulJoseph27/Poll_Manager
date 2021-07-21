@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import { firestore } from '../firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import NavBar from './NavBar';
 
 export default function CreateNewPoll() {
     const [title, setTitle] = useState("");
@@ -81,47 +82,51 @@ export default function CreateNewPoll() {
     }
 
     return (
-        <div className="create">
-            <h1>Create New Poll</h1>
-            <form onSubmit={handleSubmit}>
-                {error && <Alert variant="danger">{error}</Alert>}
-                <label>Poll title:</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
-                <label>Author Name:</label>
-                <input
-                    type="text"
-                    value={authorName}
-                    onChange={(e) => setAuthorName(e.target.value)}
-                    required
-                />
-                <label>Option Count</label>
-                <select value={count} onChange={(e) => setCount(e.target.value)}>
-                    {getOptionDropDown().map((item) => (item))}
-                </select>
-                <label>Duration</label>
-                <input
-                    className="w-50"
-                    type="number"
-                    pattern="[0-9]*"
-                    inputMode="numeric"
-                    value={activeTimeValue}
-                    onChange={(e) => {
+        <div>
+            <NavBar />
+            <p></p>
+            <div className="create">
+                <h1>Create New Poll</h1>
+                <form onSubmit={handleSubmit}>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    <label>Poll title:</label>
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                    <label>Author Name</label>
+                    <input
+                        type="text"
+                        value={authorName}
+                        onChange={(e) => setAuthorName(e.target.value)}
+                        required
+                    />
+                    <label>Option Count</label>
+                    <select value={count} onChange={(e) => setCount(e.target.value)}>
+                        {getOptionDropDown().map((item) => (item))}
+                    </select>
+                    <label>Duration</label>
+                    <input
+                        className="w-50"
+                        type="number"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
+                        value={activeTimeValue}
+                        onChange={(e) => {
 
-                        setActiveTimeValue(e.target.value)
-                    }} />
-                <select value={activeTimeUnit} onChange={(e) => setActiveTimeUnit(e.target.value)}>
-                    <option value="min">{activeTimeValue > 1 ? "minutes" : "minute"}</option>
-                    <option value="hour">{activeTimeValue > 1 ? "hours" : "hour"}</option>
-                    <option value="day">{activeTimeValue > 1 ? "days" : "day"}</option>
-                </select>
-                {getOptionsList().map((item) => (item))}
-                <Button disabled={loading} type="submit">Create Poll</Button>
-            </form>
+                            setActiveTimeValue(e.target.value)
+                        }} />
+                    <select value={activeTimeUnit} onChange={(e) => setActiveTimeUnit(e.target.value)}>
+                        <option value="min">{activeTimeValue > 1 ? "minutes" : "minute"}</option>
+                        <option value="hour">{activeTimeValue > 1 ? "hours" : "hour"}</option>
+                        <option value="day">{activeTimeValue > 1 ? "days" : "day"}</option>
+                    </select>
+                    {getOptionsList().map((item) => (item))}
+                    <Button disabled={loading} type="submit">Create Poll</Button>
+                </form>
+            </div>
         </div>
     );
 }

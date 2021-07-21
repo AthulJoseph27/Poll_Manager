@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebase, { firestore } from '../firebase';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ProgressBar from './CustomProgressBar';
 import { useAuth } from "../Context/AuthContext";
@@ -8,7 +8,6 @@ import NavBar from './NavBar';
 
 export default function Poll() {
     const { id } = useParams();
-    // const dts = props.location.state[0];
     const [details, setDetails] = useState({});
     const [error, setError] = useState("");
     const [option, setOption] = useState(-1);
@@ -18,7 +17,7 @@ export default function Poll() {
     const [optionList, setOptionList] = useState([]);
     const [optionDropDown, setOptionDropDown] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
         var docRef = firestore.collection('polls').doc(id);
         docRef.onSnapshot((doc) => {
             var _poll = doc.data();
@@ -33,12 +32,12 @@ export default function Poll() {
     function getOptionsList(dts) {
         var _list = [];
         var denominator = 0;
-        console.log(dts);
+
         for (let i = 0; i < dts.count; i++) {
             denominator += dts.voteCount[i.toString()];
         }
         for (let i = 0; i < dts.count; i++) {
-            var percentage = denominator == 0 ? 0 : (dts.voteCount[i.toString()] * 100 / denominator);
+            var percentage = denominator === 0 ? 0 : (dts.voteCount[i.toString()] * 100 / denominator);
             _list.push(
                 <div className="mt-4 mb-4">
                     <label>{String.fromCharCode(65 + i) + "."}</label>
@@ -107,6 +106,29 @@ export default function Poll() {
         setLoading(false);
     }
 
+    function getOptionSelect() {
+
+        if (details.end < Date.now())
+            return (<div></div>);
+
+        return (
+            <select
+                value={option}
+                onChange={(e) => setOption(e.target.value)}>
+                {optionDropDown.map((item) => (item))}
+            </select>
+        );
+    }
+
+    function getVoteButton() {
+        if (details.end < Date.now())
+            return (<div></div>);
+
+        return (
+            <Button disabled={loading} type="submit">Vote</Button>
+        );
+    }
+
     return (
         <div>
             <NavBar />
@@ -117,10 +139,8 @@ export default function Poll() {
                     {error && <Alert variant="danger">{error}</Alert>}
                     {message && <Alert variant="success">{message}</Alert>}
                     {optionList.map((item) => (item))}
-                    <select value={option} onChange={(e) => setOption(e.target.value)}>
-                        {optionDropDown.map((item) => (item))}
-                    </select>
-                    <Button disabled={loading} type="submit">Vote</Button>
+                    {getOptionSelect()}
+                    {getVoteButton()}
                 </form>
             </div>
         </div>

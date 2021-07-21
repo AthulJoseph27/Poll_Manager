@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './PollDetails';
 
 export default function PollList(props) {
@@ -9,11 +9,7 @@ export default function PollList(props) {
         <div className="content">
             {polls.map((poll) => (
                 <div className="poll-preview" key={poll.id}>
-                    <Link
-                        to={{
-                            pathname: `/poll/${poll.id}`,
-                            state: [poll]
-                        }}>
+                    <Link to={`/poll/${poll.id}`}>
                         <h2>{poll.title}</h2>
                         <p>{poll.author}</p>
                     </Link>
