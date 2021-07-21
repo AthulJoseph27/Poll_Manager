@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 export default function NavBar() {
     const { currentUser, logout } = useAuth();
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
@@ -13,12 +13,13 @@ export default function NavBar() {
         e.preventDefault();
 
         try {
-            setError("");
+            // setError("");
             setLoading(true);
             await logout();
             history.push("/");
         } catch {
-            setError("Failed to Logout");
+            // setError("Failed to Logout");
+            console.log("Failed to logout");
         }
 
         setLoading(false);

@@ -27,7 +27,7 @@ export default function Poll() {
             temp = getOptionDropDown(_poll);
             setOptionDropDown(temp);
         });
-    }, []);
+    }, [id]);
 
     function getOptionsList(dts) {
         var _list = [];

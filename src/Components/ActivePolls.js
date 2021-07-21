@@ -6,12 +6,12 @@ import './PollDetails';
 
 export default function ActivePolls() {
     const [polls, setPolls] = useState([]);
-    const now = Date.now();
 
     useEffect(() => {
         async function fetchData() {
             var result = await firestore.collection('polls').orderBy('end', 'asc').limit(10).get();
             var _list2 = [];
+            const now = Date.now();
             result.docs.forEach((doc) => {
                 if (doc.exists) {
                     var poll = doc.data();

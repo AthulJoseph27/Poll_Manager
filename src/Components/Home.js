@@ -8,14 +8,17 @@ export default function Home() {
         <div>
             <NavBar />
             <div>
-                <img src={street} style={
-                    {
-                        display: "block",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        marginTop: "100px",
-                        width: "50%"
-                    }} />
+                <img
+                    src={street}
+                    alt="Home"
+                    style={
+                        {
+                            display: "block",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            marginTop: "100px",
+                            width: "50%"
+                        }} />
                 <h1 style={{ textAlign: "center", marginTop: "50px", }}>Home</h1>
             </div>
         </div>

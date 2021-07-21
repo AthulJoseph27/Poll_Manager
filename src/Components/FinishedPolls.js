@@ -5,12 +5,12 @@ import { firestore } from '../firebase';
 
 export default function FinishedPolls() {
     const [polls, setPolls] = useState([]);
-    const now = Date.now();
 
     useEffect(() => {
         async function fetchData() {
             var result = await firestore.collection('polls').orderBy('end', 'desc').limit(10).get();
             var _list2 = [];
+            const now = Date.now();
             result.docs.forEach((doc) => {
                 if (doc.exists) {
                     var poll = doc.data();
