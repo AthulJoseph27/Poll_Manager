@@ -50,6 +50,13 @@ export default function CreateNewPoll() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        setError("");
+
+        if (activeTimeValue <= 0) {
+            setError("Invalid Duration!");
+            return;
+        }
+
         var start = Date.now();
         var addTime = 0;
 
@@ -89,7 +96,7 @@ export default function CreateNewPoll() {
                 <h1>Create New Poll</h1>
                 <form onSubmit={handleSubmit}>
                     {error && <Alert variant="danger">{error}</Alert>}
-                    <label>Poll title:</label>
+                    <label>Poll title</label>
                     <input
                         type="text"
                         value={title}
@@ -115,7 +122,6 @@ export default function CreateNewPoll() {
                         inputMode="numeric"
                         value={activeTimeValue}
                         onChange={(e) => {
-
                             setActiveTimeValue(e.target.value)
                         }} />
                     <select value={activeTimeUnit} onChange={(e) => setActiveTimeUnit(e.target.value)}>

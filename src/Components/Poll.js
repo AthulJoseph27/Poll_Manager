@@ -42,7 +42,7 @@ export default function Poll() {
                 <div className="mt-4 mb-4">
                     <label>{String.fromCharCode(65 + i) + "."}</label>
                     <h5>{dts.optionText[i]}</h5>
-                    <ProgressBar key={i} bgcolor={"#2ecc71"} completed={percentage.toFixed(2)} />
+                    <ProgressBar key={i} bgcolor={"#00BFA6"} completed={percentage.toFixed(2)} />
                 </div>
             );
         }

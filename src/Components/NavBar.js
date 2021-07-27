@@ -13,12 +13,10 @@ export default function NavBar() {
         e.preventDefault();
 
         try {
-            // setError("");
             setLoading(true);
             await logout();
             history.push("/");
         } catch {
-            // setError("Failed to Logout");
             console.log("Failed to logout");
         }
 
@@ -27,17 +25,33 @@ export default function NavBar() {
 
     return (
         <nav className="navbar">
-            <h1>Polls</h1>
+            <Link to="/">
+                <h1>Polls</h1>
+            </Link>
             <div className="links">
                 <Link to="/">Home</Link>
                 <Link to="/create-new-poll">New Poll</Link>
                 <Link to="/active-polls">Active Polls</Link>
                 <Link to="/finished-polls">Finished Polls</Link>
-                {currentUser && <Button disabled={loading} type="submit" onClick={handleLogout}>
-                    Logout
-                </Button>}
+            </div>
+            <div>
+                {currentUser &&
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        style={{ backgroundColor: "#00BFA6", borderColor: "#00BFA6" }}
+                        disabled={loading}
+                        type="submit"
+                        onClick={handleLogout}>
+                        Logout
+                    </Button>}
                 {!currentUser && <Link to="/login">
-                    <Button disabled={loading} type="submit">
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        style={{ backgroundColor: "#00BFA6", borderColor: "#00BFA6" }}
+                        disabled={loading}
+                        type="submit">
                         Login
                     </Button></Link>}
             </div>

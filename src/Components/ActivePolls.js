@@ -6,7 +6,7 @@ import './PollDetails';
 
 export default function ActivePolls() {
     const [polls, setPolls] = useState([]);
-
+    const title = "Active Polls";
     useEffect(() => {
         async function fetchData() {
             var result = await firestore.collection('polls').orderBy('end', 'asc').limit(10).get();
@@ -30,7 +30,7 @@ export default function ActivePolls() {
         <div>
             <NavBar />
             <div>
-                <PollList polls={polls} />
+                <PollList polls={polls} title={title} />
             </div>
         </div>
     );

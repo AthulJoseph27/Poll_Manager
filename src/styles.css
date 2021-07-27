@@ -15,18 +15,20 @@
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
-  color:  #2ecc71 ;
+  color:  #00BFA6 ;
 }
 .navbar .links {
   margin-left: auto;
 }
 .navbar a {
   margin-left: 16px;
+  margin-right: 16px;
   text-decoration: none;
   padding: 6px;
+  color:  #161621 ;
 }
 .navbar a:hover {
-  color:  #2ecc71 ;
+  color:  #00BFA6 ;
 }
 .content {
   max-width: 600px;
@@ -49,7 +51,7 @@
 }
 .poll-preview h2 {
   font-size: 20px;
-  color:  #2ecc71 ;
+  color:  #00BFA6 ;
   margin-bottom: 8px;
 }
 
@@ -65,13 +67,13 @@
 
 .create h1 {
   font-size: 40px;
-  color:  #2ecc71 ;
+  color:  #00BFA6 ;
   margin-bottom: 30px;
 }
 
 .create h2 {
   font-size: 20px;
-  color:  #2ecc71 ;
+  color:  #00BFA6 ;
   margin-bottom: 30px;
 }
 .create input, .create textarea {
@@ -93,7 +95,7 @@
 }
 
 .create button {
-  background:  #2ecc71 ;
+  background:  #00BFA6 ;
   color: #fff;
   border: 0;
   padding: 8px;
