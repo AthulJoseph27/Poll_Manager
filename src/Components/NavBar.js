@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../Context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
-export default function NavBar() {
+export default function NavBar(props) {
+    const showLoginButton = props.showLoginButton == null ? true : false;
     const { currentUser, logout } = useAuth();
-    // const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
@@ -26,7 +26,7 @@ export default function NavBar() {
     return (
         <nav className="navbar">
             <Link to="/">
-                <h1>Polls</h1>
+                <h1>BlitzPolls</h1>
             </Link>
             <div className="links">
                 <Link to="/">Home</Link>
@@ -35,7 +35,7 @@ export default function NavBar() {
                 <Link to="/finished-polls">Finished Polls</Link>
             </div>
             <div>
-                {currentUser &&
+                {currentUser && (showLoginButton) &&
                     <Button
                         variant="primary"
                         size="sm"
@@ -45,7 +45,7 @@ export default function NavBar() {
                         onClick={handleLogout}>
                         Logout
                     </Button>}
-                {!currentUser && <Link to="/login">
+                {!currentUser && (showLoginButton) && < Link to="/login">
                     <Button
                         variant="primary"
                         size="sm"

@@ -10,19 +10,19 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
   color:  #00BFA6 ;
 }
-.navbar .links {
+/* .navbar .links {
   margin-left: auto;
-}
+} */
 .navbar a {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
   text-decoration: none;
   padding: 6px;
   color:  #161621 ;
@@ -103,3 +103,19 @@
   cursor: pointer;
 }
 
+
+.trapezium {
+  border-bottom: 150px solid #00BFA6;
+	border-left: 0px solid transparent;
+	border-right: 75px solid transparent;
+	height: 0;
+	width: 70%;
+  position:absolute;
+}
+
+.rectangle {
+  height: 200px;
+  width: 100%;
+  background-color: #34344f;
+  position:absolute;
+}
