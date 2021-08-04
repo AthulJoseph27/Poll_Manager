@@ -110,10 +110,6 @@ export default function CreateNewPoll() {
                         onChange={(e) => setAuthorName(e.target.value)}
                         required
                     />
-                    <label>Option Count</label>
-                    <select value={count} onChange={(e) => setCount(e.target.value)}>
-                        {getOptionDropDown().map((item) => (item))}
-                    </select>
                     <label>Duration</label>
                     <input
                         className="w-50"
@@ -128,6 +124,10 @@ export default function CreateNewPoll() {
                         <option value="min">{activeTimeValue > 1 ? "minutes" : "minute"}</option>
                         <option value="hour">{activeTimeValue > 1 ? "hours" : "hour"}</option>
                         <option value="day">{activeTimeValue > 1 ? "days" : "day"}</option>
+                    </select>
+                    <label>Option Count</label>
+                    <select value={count} onChange={(e) => setCount(e.target.value)}>
+                        {getOptionDropDown().map((item) => (item))}
                     </select>
                     {getOptionsList().map((item) => (item))}
                     <Button disabled={loading} type="submit">Create Poll</Button>
